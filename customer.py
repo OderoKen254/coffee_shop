@@ -32,7 +32,7 @@ class Customer:
         return Order(self, coffee, price)
     
     @classmethod
-    def favorite_customer(cls, coffee):
+    def most_aficionado(cls, coffee):
         if not isinstance(coffee, Coffee):
             raise ValueError("Coffee must be a Coffee instance")
         
