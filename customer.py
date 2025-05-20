@@ -31,8 +31,25 @@ class Customer:
             raise ValueError("Coffee must be a Coffee instance")
         return Order(self, coffee, price)
     
+    @classmethod
+    def favorite_customer(cls, coffee):
+        if not isinstance(coffee, Coffee):
+            raise ValueError("Coffee must be a Coffee instance")
+        
+        customer_spending = {}
+        for order in coffee.orders():
+            if order.customer in customer_spending:
+                customer_spending[order.customer] += order.price
+            else:
+                customer_spending[order.customer] = order.price
+        
+        if not customer_spending:
+            return None
+        
+        return max(customer_spending.items(), key=lambda x: x[1])[0]
+     
 
-    
+
 
 
 
